@@ -1,0 +1,21 @@
+HW Cotnrol Layer
+  --Memory control directly <EX: map/alloc/free>
+  --HW Timer control directly <EX: set/pause/delete>
+  --Peripheral control directly <EX: GPIO/UART/SPI tx/rx>
+
+SW LIB
+  --list operation (EX: push/pop)
+  --semaphore operation for task/queue
+
+SW Tool Layer (base on HW control layer + SW LIB)
+  --Struct control with ID (NOT size) <EX: alloc/free/init, struct may need nested alloc/nested free>
+  --Queue control with Struct ID (struct must have list inside) (EX: push/update/pop/peek/search)
+  --SW timer control with ID (Could implement lots of SW timer by one HW timer)
+  --FSM control
+    --Create event entry API & push events into queue for sequencial process.
+    --Use indepent FSM function to process events
+    --For complex FSM, every state may have its own enter/handler/exit API. common operation could arrange in enter/exit.
+    --Create a step function to do & record the state transition
+
+Interface API
+  --Offer definition to external usage. it could easily be re-defined if a layer/module/lib removed or changed
