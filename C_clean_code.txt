@@ -1,0 +1,17 @@
+If a design is very simple & clear, but the implementation code is so complex & dirty, it may hit some of following mistake:
+1. State related mistake
+--Use event handler, NOT state handler
+----> this cause code switch state, NOT switch event
+----> Hard to track state change sequence & reason
+--Use semaphore to resolve race condition
+----> this could be done by state machine
+2. NOT use tree-like prefix rule to naming everything
+----> EX: FIEL_MODULE_FEATURE_SUBFEATURE_xxx + FIEL_MODULE_FEATURE_SUBFEATURE_xxx_get/set
+----> EX: FIEL_MODULE_FEATURE_SUBFEATURE_STATE + FIEL_MODULE_FEATURE_SUBFEATURE_STATE_handler()
+3. Magic number
+----> All number should be defined
+4. Reuse a variable with different meaning
+----> count == 0 means init done + no count
+5. BAD parentheses
+-- left parentheses & right parentheses in different indent (to save a blank line) or omitted
+----> aggregate code to blocks by parentheses & blank will make it easy to read & remeber as a mini-function
